@@ -8,5 +8,5 @@ def DH_transformation(a, alpha, d, theta, unit='rad'):
 
     T_x = C.Screw_X(a, alpha, unit=unit)
     T_z = C.Screw_Z(d, theta, unit=unit)
-    T = C.compound_transforms(T_x,T_z)
+    T = C.T_compound(T_x,T_z)
     return T

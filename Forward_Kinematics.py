@@ -16,12 +16,8 @@ def Forward_Kinematics(a_arr, alpha_arr, d_arr, theta_arr, unit='rad', plotting=
     for i in range(0,n):
         T_array[i] = DH_transformation(a_arr[i], alpha_arr[i], d_arr[i], theta_arr[i], unit=unit)
     
-    # to compute T_0N
-    for i in range(0,n):
-        if i == 0:
-            T_0N = T_array[i]
-        else:
-            T_0N = C.compound_transforms(T_0N, T_array[i])
+    # to compute T_0N = T01 * T12 * T23 ... T(N-1)(N)
+    T_0N = C.T_compound_v2(T_array)
 
     # plotting
     if plotting:
