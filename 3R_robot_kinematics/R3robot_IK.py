@@ -24,8 +24,7 @@ def R3robot_IK(T_0N, output_unit='deg', solution1or2=1):
     if x==0 and y==0:
         return "theta 1 is arbitrary for (x,y)=(0,0)"
     cos_theta2 = (x**2 + y**2 - L1**2 - L2**2) / (2*L1*L2)
-    print(cos_theta2)
-    if cos_phi<-1 or cos_phi>1:
+    if cos_theta2<-1 or cos_theta2>1:
         return "solution does not exist"
     if solution1or2==1: # first solution
         sin_theta2 = (1 - (cos_theta2**2))**0.5
@@ -45,5 +44,7 @@ def R3robot_IK(T_0N, output_unit='deg', solution1or2=1):
 
 if __name__ == "__main__":
     from R3robot_FK import R3robot_FK
-    T_03 = R3robot_FK(10,20,30,unit='deg')
+    # T_03 = R3robot_FK(10,20,30,unit='deg')
+    # print(T_03)
+    T_03 = np.array([[1,0,0,9],[0,1,0,0],[0,0,1,0],[0,0,0,1]])
     print(R3robot_IK(T_03,solution1or2=2))
